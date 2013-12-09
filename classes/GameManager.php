@@ -7,12 +7,17 @@ class GameManager {
     // Public Methods 
     public static function ShowTitleScreen() {
         
+    }
+    
+    public static function startGame () {
         
     }
     
-    // StartGame ()
+    public static function endGame ($ending_text) {
+        
+    }
     
-    // EndGame ()
-    
-    // ApplyRules ()
+    public static function applyRules () {
+        
+    }
 }

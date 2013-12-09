@@ -8,7 +8,14 @@
  */
 class Level {
     
-    // Initialize()
+    private static $rooms; // Liste som inneholder mange Rooms
+
+    // properties 
+    public static function getRooms () {
+        return self::$rooms;
+    }
     
-    // BuildLevel()
+    public static function BuildLevel() {
+        
+    }
 }

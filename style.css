@@ -1,0 +1,104 @@
+body {
+    background-color: #000; 
+}
+
+#container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+#room {
+    height: 400px;
+    width: 600px;
+    margin-top: 50px;
+    border: #CCC solid 4px;
+    background-color: #000;
+    position: relative;
+    float: left;
+}
+
+#room_description {
+    /*background-color: rgba(255,255,255,0.7);*/
+    color: #cc0000;
+    margin: 0 auto;
+    width: 60%;
+    margin-top: 80px;
+    text-align: center;
+    padding: 20px;
+}
+
+.door {
+    position: absolute;
+    background: #663300;
+    color: #CCC;
+    text-align: center;
+}
+
+#west {
+    top: 100px;
+    left: 0px;
+    height: 200px;
+    width: 50px;
+    line-height: 180px;  
+}
+
+#north {
+    top: 0px;
+    left: 200px;
+    height: 50px;
+    width: 200px;
+    line-height: 50px;  
+}
+#east {
+    top: 100px;
+    right: 0px;
+    height: 200px;
+    width: 50px;
+    line-height: 180px;  
+}
+#south {
+    bottom: 0px;
+    left: 200px;
+    height: 50px;
+    width: 200px;
+    line-height: 50px;  
+}
+
+#info {
+    
+    height: 405px;
+    width: 150px;
+    margin-left: 40px;
+    margin-top: 50px;
+    border: #CCC solid 1px;
+    background-color: #000;
+    float: left;
+}
+
+#commands {
+    margin-top: 20px;
+    position: relative;
+    color: #FFF;
+    float: left;
+    
+}
+
+.command_box {
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+    border: #FFF solid 1px;
+    width: 120px;
+    margin-right: 50px;
+}
+
+#commands input[type=submit] {
+    width: 100px;
+    margin-bottom: 5px;
+    padding:5px; 
+    border:2px solid #ccc; 
+    background:#ccc; 
+    /*border:0 none;*/
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}

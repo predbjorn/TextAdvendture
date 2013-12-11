@@ -1,11 +1,7 @@
 <?php
 class CommandProcessor {
     
-    public static function processCommand ($line) {
-        
-        $command = TextUtilities::extractCommand($line);
-        $arguments = TextUtilities::extractArguments($line);
-        
+    public static function processCommand ($command, $arguments) {
         
         switch ($command) {
             case "exit":
@@ -35,8 +31,6 @@ class CommandProcessor {
                 break;
         }
         GameManager::applyRules();
-        TextBuffer::display();
-        
     }
     
     public static function showHelp() {

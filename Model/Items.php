@@ -30,4 +30,9 @@ class Items {
         $this->weight = $weight;
     }
     
+    public function toArray () {
+        $item['title'] = $this->title;
+        $item['pickup_text'] = $this->pickup_text;
+        $item['weight'] = $this->weight;
+    }
 }

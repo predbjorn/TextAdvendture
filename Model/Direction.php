@@ -1,6 +1,6 @@
 <?php
 
-class Direction extends SplEnum{
+class Direction {
     
     const NORTH = "north";
     const SOUTH = "south";

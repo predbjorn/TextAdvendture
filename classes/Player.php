@@ -44,10 +44,12 @@ class Player {
     
     // public Methods
     public static function __construct() {
-        
+        self::$inventory_item = array();
     }
     
     public static function move ($direction) {
+        $room = self::getCurrentRoom();
+        
         
     }
     
@@ -65,6 +67,7 @@ class Player {
     
     public static function getCurrentRoom () {
         
+        return Room;
     }
     
     public static function getInventoryItem ($item_name) {

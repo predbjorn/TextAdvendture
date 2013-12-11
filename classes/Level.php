@@ -17,5 +17,15 @@ class Level {
     
     public static function BuildLevel() {
         
+        $this->rooms = "";
+        
+        // bygg en session :
+        // [rom 1] 
+        //      [items]
+        //      [doors}
+        //      osv
+        //////////////////////////////////
+        //RED ROOM
+        $room;
     }
 }

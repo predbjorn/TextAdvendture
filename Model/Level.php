@@ -47,11 +47,11 @@ class Level {
         $room = new Room();
         
         $room->setTitle("Red Room");
-        $room->setDescription("You have entered the red room! There is a locked door to the right");
+        $room->setDescription("You have entered the red room! There is a locked door down from here");
         $room->addExit(Direction::EAST);
         
         $item = new Items();
-        $item->setTitle("Blue ball");
+        $item->setTitle("blue ball");
         $item->setPickupText("You just picked up the blue ball");
         
         $room->addItem($item);

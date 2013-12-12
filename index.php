@@ -4,7 +4,6 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('max_execution_time', 300);
 
- include_once 'Model/CommandProcessor.php';
  include_once 'Model/Direction.php';
  include_once 'Model/GameManager.php';
  include_once 'Model/Items.php';
@@ -36,11 +35,13 @@ and open the template in the editor.
                 $command = null;
                 $arguments = null;    
 
-                if (isset($_REQUEST['command'])) 
-                    $command = $_REQUEST['command'];    
-                if (isset($_REQUEST['argument']))
-                    $arguments = $_REQUEST['argument'];
-
+                if (isset($_SESSION['level'])) {
+                    if (isset($_REQUEST['command'])) 
+                        $command = $_REQUEST['command'];    
+                    if (isset($_REQUEST['argument']))
+                        $arguments = $_REQUEST['argument'];
+                }
+                
                 GameManager::goGame($command, $arguments);
                 echo GameManager::displayGame();
 

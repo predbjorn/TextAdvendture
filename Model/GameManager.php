@@ -72,7 +72,7 @@ class GameManager {
             Level::getRoom(1,1)->addExit(Direction::WEST); // yellow room
         }
         
-        var_dump(Player::getMoves());
+        
         if (Player::getMoves() > 10) {
             self::endGame("You are old and slow!");
         }
@@ -80,6 +80,7 @@ class GameManager {
     
     public static function endGame ($text = "Game over") {
         TextBuffer::addEndGameText($text);
+        self::$end_game = true;
         \session_destroy();
     }
     

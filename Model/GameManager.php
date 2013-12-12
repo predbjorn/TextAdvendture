@@ -4,16 +4,93 @@
 
 class GameManager {
     
-    public static function initialize() {
+    private static $end_game = false;
+
+    public static function goGame($command, $arguments) {
+        self::initialize();
+        self::processCommand($command, $arguments);
+        self::applyRules();
+        if (!self::$end_game) {
+            self::saveSession();
+        }
+    }
+
+    private static function initialize() {
         Level::initialize();
         Player::initilizePlayer();
-        
-        //get commandProcessor
-        
-        
     }
+    
+    private static function processCommand ($command, $arguments) {
         
+        switch ($command) {
+            case "move":
+                Player::move($arguments);
+                break;
+            case "pickup":
+                Player::pickupItem($arguments);
+                break;
+            case "drop":
+                Player::dropItem($arguments);
+                break;
+            
+            // debug
+            case "end":
+                self::endGame("Debug ending!");
+                break;
+            
+            // not implemented
+            case "jump":
+                // jump to (x,y)
+                break;
+            case "whereami":
+                TextBuffer::addAction(Player::getCurrentRoom()->getCoordinates());
+                break;
+            default:
+                break;
+        }
+    }
+    
+    private static function saveSession () {
+        $_SESSION['level'] = Level::saveLevelsToSession();
+        $_SESSION['player'] = Player::savePlayerToSession();
+    }
+    
+    
+    
+    private static function applyRules () {
+        
+        if (    Level::getRoom(0,0)->getItem("red ball") != null &&
+                Level::getRoom(1,0)->getItem("blue ball") != null &&
+                Level::getRoom(0,1)->getItem("green ball") != null &&
+                Level::getRoom(1,1)->getItem("yellow ball") != null) {
+            self::endGame("WHIIIIIIIIII");
+        }
+        
+        if (Player::getInventoryItem("key") != null) {
+            Level::getRoom(0,0)->addExit(Direction::SOUTH); // red room
+            Level::getRoom(0,1)->addExit(Direction::NORTH); // green room
+            Level::getRoom(1,1)->addExit(Direction::WEST); // yellow room
+        }
+        
+        var_dump(Player::getMoves());
+        if (Player::getMoves() > 10) {
+            self::endGame("You are old and slow!");
+        }
+    }
+    
+    public static function endGame ($text = "Game over") {
+        TextBuffer::addEndGameText($text);
+        \session_destroy();
+    }
+    
     public static function displayGame () {
+        
+        if (self::$end_game) {
+            $end_game_text = TextBuffer::getEndGameText();
+            return Html::endGameScreen($end_game_text);
+        }
+        
+        
         $room = Player::getCurrentRoom();
         
         
@@ -35,83 +112,4 @@ class GameManager {
         
         return $html->getGameView();
     }
-    
-    public static function saveSession () {
-        
-        $_SESSION['level'] = Level::saveLevelsToSession();
-        $_SESSION['player'] = Player::savePlayerToSession();
-    }
-    /*
-        ////////////  PLAYER  /////////////////////
-        $player['posX'] = 0;
-        $player['posX'] = 0;
-        $player['inventory_item'] = array();
-        $player['moves'] = 0;
-        $player['weight_capacity'] = 6;
-        
-        $_SESSION['player'] = $player;
-        
-        
-        ////////////  ROM  ////////////////////////
-        
-         // Red Room
-        $room['title'] = "Red Room";
-        $room['description'] = "You have entered the Red Room! There is a loocked door to the sout";
-        $room['add_exit'] = "east";
-        $room['can_exit'] = "south";
-        
-        $item['title'] = "Blue ball";
-        $item['pickup_text'] = "You just pickup the blue ball";
-        
-        $room['items'] = $item;
-        $rooms['0:0'] = $room;
-        
-        
-        
-        $rooms['0:0']['title'] = "Red Room";
-        
-        $rooms['0:0']['title'] = "Red Room";
-        
-        $rooms['0:0']['title'] = "Red Room";
-        
-        */
-        
-    
-    
-    public static function endGame () {
-        \session_destroy();
-        return Html::endGameScreen("Game over");
-        
-    }
-    
-    public static function applyRules () {
-        
-//        if (Level::getRoom(0,0)->getItem("red ball") != null) {
-//            
-//        }
-        
-    }
-        /*
-        if (Level.Rooms[0, 0].GetItem("red ball") != null &&
-                Level.Rooms[1, 0].GetItem("blue ball") != null &&
-                Level.Rooms[0, 1].GetItem("green ball") != null &&
-                Level.Rooms[1, 1].GetItem("yellow ball") != null)
-            EndGame("Good jobb, logic is on your side boy");
-
-            if (Player.GetInventoryItem("key") != null)
-            {
-                Level.Rooms[0, 0].AddExit(Direction.South); //red room
-                Level.Rooms[0, 0].Description = " You have entered the red room";
-
-                Level.Rooms[0, 1].AddExit(Direction.North); //green room
-                Level.Rooms[0, 1].Description = " You have entered the green room";
-
-                Level.Rooms[1, 1].AddExit(Direction.West); //yellow room
-                Level.Rooms[1, 1].Description = " You have entered the yellow room";
-            }
-
-            if (Player.Moves > 10)
-                EndGame("You are old and slow");
-        }
-    }*/
 }

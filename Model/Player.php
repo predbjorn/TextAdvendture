@@ -40,11 +40,12 @@ class Player {
         return self::$inventory_items;
     }
     
-    
     private static function addItemToInventoryList ($item) {
         self::$inventory_items[] = $item;
     }
     
+    
+    // Method
     public static function getInvetoryWeight () {
         $result = 0;
         if (empty(self::$inventory_items))
@@ -56,61 +57,12 @@ class Player {
         return $result;
     }
     
-    public static function initilizePlayer () {
-        if (!isset($_SESSION['player'])) {
-            self::$posX = 0;
-            self::$posY = 0;
-            return; 
-        }
-        
-        $player = $_SESSION['player'];
-        self::buildFromSession($player['posX'],
-                                $player['posY'],
-                                $player['inventory_item'],
-                                $player['moves'],
-                                $player['weight_capacity'],
-                                $player['inventory_item']);
-        
-    }
     
-    public static function savePlayerToSession () {
-        $player['posX'] = self::$posX;
-        $player['posY'] = self::$posY;
-        $player['moves'] = self::$moves;
-        $player['weight_capacity'] = self::$weight_capacity;
-        
-        $player['inventory_item'] = array();
-        if ( !empty(self::$inventory_items)) {
-            foreach ( self::$inventory_items as $item) {
-                $player['inventory_item'][] = $item->toArray();
-            }
-        } 
-        
-        return $player;
-        
-    }
-    
-    public static function buildFromSession ($posX, $posY, $inventory_item, $moves, $weight_capacity, $inventory_items) {
-        self::$posY = $posY;
-        self::$posX = $posX;
-        self::$inventory_items = $inventory_item;
-        self::$moves = $moves;
-        self::$weight_capacity = $weight_capacity;
-        
-        self::$inventory_items = array();
-        if (!empty($inventory_items)) {
-            foreach ( $inventory_items as $array ) {
-                $item = Items::arrayToItem($array);
-                self::addItemToInventoryList($item);
-            }
-        }
-    }
     
 
 
     
     // public Methods
-    
     public static function move ($direction) {
         $room = self::getCurrentRoom();
         
@@ -186,4 +138,55 @@ class Player {
         return null;
     }
     
+    
+    // Data Handling
+    public static function initilizePlayer () {
+        if (!isset($_SESSION['player'])) {
+            self::$posX = 0;
+            self::$posY = 0;
+            return; 
+        }
+        
+        $player = $_SESSION['player'];
+        self::buildFromSession($player['posX'],
+                                $player['posY'],
+                                $player['inventory_item'],
+                                $player['moves'],
+                                $player['weight_capacity'],
+                                $player['inventory_item']);
+        
+    }
+    
+    public static function savePlayerToSession () {
+        $player['posX'] = self::$posX;
+        $player['posY'] = self::$posY;
+        $player['moves'] = self::$moves;
+        $player['weight_capacity'] = self::$weight_capacity;
+        
+        $player['inventory_item'] = array();
+        if ( !empty(self::$inventory_items)) {
+            foreach ( self::$inventory_items as $item) {
+                $player['inventory_item'][] = $item->toArray();
+            }
+        } 
+        
+        return $player;
+        
+    }
+    
+    public static function buildFromSession ($posX, $posY, $inventory_item, $moves, $weight_capacity, $inventory_items) {
+        self::$posY = $posY;
+        self::$posX = $posX;
+        self::$inventory_items = $inventory_item;
+        self::$moves = $moves;
+        self::$weight_capacity = $weight_capacity;
+        
+        self::$inventory_items = array();
+        if (!empty($inventory_items)) {
+            foreach ( $inventory_items as $array ) {
+                $item = Items::arrayToItem($array);
+                self::addItemToInventoryList($item);
+            }
+        }
+    }
 }

@@ -32,29 +32,18 @@ and open the template in the editor.
     <body>
         <div id="container">
             <?php
-            $gameState = "start";
-            $command = null;
-            $arguments = null;
             
-            if (isset($_REQUEST['state']))
-                $gameState = $_REQUEST['state'];
-            if (isset($_REQUEST['command'])) 
-                $command = $_REQUEST['command'];    
-            if (isset($_REQUEST['argument']))
-                $arguments = $_REQUEST['argument'];
-            
-            switch ( $gameState) {
-                case "end":
-                    echo GameManager::endGame();
-                    break;
-                default:
-                    GameManager::initialize();
-                    CommandProcessor::processCommand($command, $arguments);
-                    GameManager::saveSession();
-                    echo GameManager::displayGame();
-                    break;
-            }
-            
+                $command = null;
+                $arguments = null;    
+
+                if (isset($_REQUEST['command'])) 
+                    $command = $_REQUEST['command'];    
+                if (isset($_REQUEST['argument']))
+                    $arguments = $_REQUEST['argument'];
+
+                GameManager::goGame($command, $arguments);
+                echo GameManager::displayGame();
+
             ?>
         </div>
     </body>

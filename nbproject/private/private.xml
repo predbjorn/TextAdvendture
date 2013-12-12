@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Oyvind/Documents/NetBeansProjects/TextAdvendture/index.php</file>
-            <file>file:/C:/Users/Oyvind/Documents/NetBeansProjects/TextAdvendture/classes/GameManager.php</file>
-            <file>file:/C:/Users/Oyvind/Documents/NetBeansProjects/TextAdvendture/classes/Level.php</file>
-            <file>file:/C:/Users/Oyvind/Documents/NetBeansProjects/TextAdvendture/classes/Rooms.php</file>
-            <file>file:/C:/Users/Oyvind/Documents/NetBeansProjects/TextAdvendture/classes/Items.php</file>
-            <file>file:/C:/Users/Oyvind/Documents/NetBeansProjects/TextAdvendture/classes/TextBuffer.php</file>
-            <file>file:/C:/Users/Oyvind/Documents/NetBeansProjects/TextAdvendture/classes/CommandProcessor.php</file>
-            <file>file:/C:/Users/Oyvind/Documents/NetBeansProjects/TextAdvendture/classes/TextUtilities.php</file>
-            <file>file:/C:/Users/Oyvind/Documents/NetBeansProjects/TextAdvendture/classes/Player.php</file>
-            <file>file:/C:/Users/Oyvind/Documents/NetBeansProjects/TextAdvendture/classes/Direction.php</file>
+            <file>file:/C:/xampp/htdocs/TextAdvendture/Model/GameManager.php</file>
+            <file>file:/C:/xampp/htdocs/TextAdvendture/style.css</file>
+            <file>file:/C:/xampp/htdocs/TextAdvendture/Model/Room.php</file>
+            <file>file:/C:/xampp/htdocs/TextAdvendture/Model/Level.php</file>
+            <file>file:/C:/xampp/htdocs/TextAdvendture/Model/Player.php</file>
+            <file>file:/C:/xampp/htdocs/TextAdvendture/Model/TextBuffer.php</file>
+            <file>file:/C:/xampp/htdocs/TextAdvendture/index2.php</file>
+            <file>file:/C:/xampp/htdocs/TextAdvendture/index.php</file>
         </group>
     </open-files>
 </project-private>

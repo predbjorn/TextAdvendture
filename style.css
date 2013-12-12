@@ -1,5 +1,5 @@
 body {
-    background-color: #000; 
+    background-color: #FFF; 
 }
 
 #container {
@@ -116,4 +116,8 @@ body {
     /*border:0 none;*/
     -webkit-border-radius: 5px;
     border-radius: 5px; 
+}
+
+#commands input[type=submit]:hover {
+    background:#555; 
 }

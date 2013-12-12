@@ -36,11 +36,6 @@ class Room {
         return $this->items;
     }
     
-    public function __construct() {
-        $this->exits = array();
-        $this->items = array();
-    }
-    
     public function getItemList () {
         return $this->items;
     }
@@ -54,6 +49,15 @@ class Room {
         // not supported jet...
     }
 
+    
+    // construct
+    
+    public function __construct() {
+        $this->exits = array();
+        $this->items = array();
+    }
+    
+    
     // public Methods 
     
     public function showTitle() {
@@ -100,7 +104,9 @@ class Room {
         return false;
     }
     
+    
     // Data handling
+    
     public function toArray() {
         $room = array();
         $room['title'] = $this->title;

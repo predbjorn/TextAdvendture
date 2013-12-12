@@ -13,6 +13,9 @@ class Level {
         return self::$rooms[$pos];
     }
     
+    
+    // Methods
+    
     public static function initialize(  ) {
         if (!isset($_SESSION['level'])) {
             self::BuildLevel();
@@ -21,6 +24,7 @@ class Level {
         self::buildFromSession($_SESSION['level']);
     }
     
+    // DataHandling
     public static function saveLevelsToSession() {
         $out = array();
         foreach (self::$rooms as $pos => $room ) {
@@ -45,7 +49,6 @@ class Level {
         $room->setTitle("Red Room");
         $room->setDescription("You have entered the red room! There is a locked door to the right");
         $room->addExit(Direction::EAST);
-        $room->addExit(Direction::SOUTH);
         
         $item = new Items();
         $item->setTitle("Blue ball");
@@ -56,7 +59,7 @@ class Level {
         $item = new Items();
         $item->setTitle("mountain");
         $item->setWeight(8);
-        $item->setPickupText("You just picked up the blue ball");
+        $item->setPickupText("Superman!");
         
         $room->addItem($item);
         
@@ -74,6 +77,19 @@ class Level {
         $room->addExit(Direction::WEST);
         $room->addExit(Direction::SOUTH);
         
+        
+        $item = new Items();
+        $item->setTitle("key");
+        $item->setPickupText("You just picked up the key");
+        
+        $room->addItem($item);
+        
+        $item = new Items();
+        $item->setTitle("red ball");
+        $item->setPickupText("You just picked up the red ball");
+        
+        $room->addItem($item);
+        
         self::$rooms['1,0'] = $room;
         
         
@@ -84,7 +100,6 @@ class Level {
         
         $room->setTitle("Green Room");
         $room->setDescription("You have entered the green room!");
-        $room->addExit(Direction::NORTH);
         
         $item = new Items();
         $item->setTitle("yellow ball");
@@ -103,10 +118,11 @@ class Level {
         $room->setTitle("yellow Room");
         $room->setDescription("You have entered the yellow room!");
         $room->addExit(Direction::NORTH);
+        $room->addExit(Direction::WEST);
         
         $item = new Items();
-        $item->setTitle("red ball");
-        $item->setPickupText("You just picked up the red ball");
+        $item->setTitle("green ball");
+        $item->setPickupText("You just picked up the green ball");
         
         $room->addItem($item);
         

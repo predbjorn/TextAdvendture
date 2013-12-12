@@ -6,7 +6,6 @@ class Items {
     private $weight = 1;
     
     
-    
     // Properties
     
     public function getTitle () {

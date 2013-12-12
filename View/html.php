@@ -16,20 +16,23 @@ class html {
         $this->drop = "";
     }
     
-    public function showRoom ($exits, $description, $title) {
+    public function showRoom ($exits, $description, $title, $action) {
         $this->room = ' <div id="room"><div id="room_description">';
         $this->room .= '<h1>' . $title . '</h1>';
         $this->room .= '<p>' . $description . '</p>';
+        $this->room .= '<p class="white">' . $action. '</p>';
         
-        foreach ( $exits as $direction) {
-            $this->room .= '<div id="'. $direction .'" class="door">'. $direction .'</div>';
+        if (!empty($exits)) {
+            foreach ( $exits as $direction) {
+                $this->room .= '<div id="'. $direction .'" class="door">'. $direction .'</div>';
+            }
         }
         
         $this->room .= '</div></div>';
     }
     
     
-    public function showInfo ($inventory, $weigth, $players_weigth) {
+    public function showInfo ($item_in_inventory, $inventory_weigth, $players_capacity) {
         $this->info .= '<div id="info">';
         $this->info .= '</div>';
     }
@@ -37,22 +40,23 @@ class html {
     public function showMove ($directions) {
         $this->move = '<div class="command_box">';
         $this->move .= '<h3>Move:</h3>';
-        $this->move .= '<form><input type="hidden" name="argument" value="move">';
+        $this->move .= '<form><input type="hidden" name="command" value="move">';
         
-        foreach ($directions as $direction) {
+        if (!empty($directions)) {
+            foreach ($directions as $direction) {
                 $this->move .= '<input type="submit" name="argument" value="'.$direction.'">';
+            }
         }
-        
         $this->move .= '</form></div>';
     }
     public function showItems ($items_in_room) {
         $this->items = '<div class="command_box">';
         $this->items .= '<h3>Pickup Item:</h3>';
-        $this->items .= '<form><input type="hidden" name="argument" value="pickup">';
+        $this->items .= '<form><input type="hidden" name="command" value="pickup">';
         
         if (!empty($items_in_room)) {
             foreach ($items_in_room as $item) {
-                $this->items .= '<input type="submit" name="argument" value="'.$item.'">';
+                $this->items .= '<input type="submit" name="argument" value="'.$item->getTitle().'">';
             }
         }
         $this->items .= '</form></div>';
@@ -60,11 +64,11 @@ class html {
     public function showDrop ($inventory) {
         $this->drop = '<div class="command_box">';
         $this->drop .= '<h3>Drop Item:</h3>';
-        $this->drop .= '<form><input type="hidden" name="argument" value="drop">';
+        $this->drop .= '<form><input type="hidden" name="command" value="drop">';
         
         if (!empty($inventory)) {
             foreach ($inventory as $item) {
-                $this->drop .= '<input type="submit" name="argument" value="'.$item.'">';
+                $this->drop .= '<input type="submit" name="argument" value="'.$item->getTitle().'">';
             }
         }
         $this->drop .= '</form></div>';

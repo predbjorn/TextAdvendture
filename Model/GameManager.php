@@ -21,7 +21,8 @@ class GameManager {
         $html->showRoom(
                 $room->getExitList(), 
                 $room->getDescription(), 
-                $room->getTitle()
+                $room->getTitle(),
+                TextBuffer::getAction()
             );
         $html->showInfo(
                 Player::getInventoryList(), 
@@ -78,14 +79,16 @@ class GameManager {
     
     
     public static function endGame () {
+        \session_destroy();
         return Html::endGameScreen("Game over");
+        
     }
     
     public static function applyRules () {
         
-        if (Level::getRoom(0,0)->getItem("red ball") != null) {
-            
-        }
+//        if (Level::getRoom(0,0)->getItem("red ball") != null) {
+//            
+//        }
         
     }
         /*

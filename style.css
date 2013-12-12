@@ -27,6 +27,10 @@ body {
     padding: 20px;
 }
 
+.white {
+    color: #FFF;
+}
+
 .door {
     position: absolute;
     background: #663300;
@@ -73,14 +77,25 @@ body {
     border: #CCC solid 1px;
     background-color: #000;
     float: left;
+    color: #FFF;
+    list-style:none;
 }
+
+#info > h3 {
+    padding-left: 20px;
+}
+
+#info > ul {
+    list-style:none;
+}
+
 
 #commands {
     margin-top: 20px;
     position: relative;
     color: #FFF;
     float: left;
-    
+    background-color: #000;
 }
 
 .command_box {

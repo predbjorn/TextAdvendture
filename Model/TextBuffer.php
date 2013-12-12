@@ -2,14 +2,14 @@
 
 class TextBuffer {
     
-    private static $output_buffer = "";
+    private static $action = "";
     
-    public static function add($text) {
-        self::$output_buffer .= $text . "<br>";
+    public static function addAction($action) {
+        self::$action .= $action . "<br>";
     }
     
-    public static function display () {
-        
+    public static function getAction () {
+        return self::$action;
     }
     
 }

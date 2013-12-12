@@ -11,6 +11,7 @@ ini_set('max_execution_time', 300);
  include_once 'Model/Level.php';
  include_once 'Model/Player.php';
  include_once 'Model/Room.php';
+ include_once 'Model/TextBuffer.php';
  
  include_once 'View/html.php';
 
@@ -35,9 +36,8 @@ and open the template in the editor.
             $command = null;
             $arguments = null;
             
-            
-            if (isset($_SESSION['player']))
-                $gameState = "game";
+            if (isset($_REQUEST['state']))
+                $gameState = $_REQUEST['state'];
             if (isset($_REQUEST['command'])) 
                 $command = $_REQUEST['command'];    
             if (isset($_REQUEST['argument']))
@@ -46,11 +46,13 @@ and open the template in the editor.
             switch ( $gameState) {
                 case "end":
                     echo GameManager::endGame();
+                    break;
                 default:
                     GameManager::initialize();
                     CommandProcessor::processCommand($command, $arguments);
                     GameManager::saveSession();
                     echo GameManager::displayGame();
+                    break;
             }
             
             ?>

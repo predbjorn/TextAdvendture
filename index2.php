@@ -16,6 +16,8 @@ and open the template in the editor.
                 <div id="room_description">
                     <h1>Overskrift</h1>
                     <p>Her er et room</p>
+                    <br>
+                    <p class="white">Her er et room</p>
 
                     <div id="west" class="door">west</div>
                     <div id="north" class="door">north</div>
@@ -24,7 +26,12 @@ and open the template in the editor.
                 </div>
             </div>
             <div id="info">
-                
+                <h3>Inventory</h3>
+                <ul>
+                    <li>item 1</li>
+                    <li>item 1</li>
+                    <li>item 1</li>
+                </ul>
             </div>
             <div id="commands">
                 <div class="command_box">

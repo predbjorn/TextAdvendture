@@ -35,9 +35,6 @@ class Room {
     public function getItemsList () {
         return $this->items;
     }
-    public function addItemToList($items) {
-        $this->items = $items;        
-    }
     
     public function __construct() {
         $this->exits = array();
@@ -53,6 +50,7 @@ class Room {
     }
     
     public function getCoordinates () {
+        return "debug function not available";
         // not supported jet...
     }
 
@@ -64,20 +62,19 @@ class Room {
     
     public function getItem ($item_name) {
         foreach ( $this->items as $item) {
-            if ($item == $item_name)
+            if ($item->getTitle() == $item_name)
                 return $item;
         }
         return null; // did not found any item with that name;
     }
-    public function addItem ($item_name) {
-        if ( ! in_array( $item_name, $this->exits) ) {
-            $this->items[] = $item_name;
-        }
+    public function addItem ($item) {
+        $this->items[] = $item;
     }
     
     public function removeItem ($item_name) {
-        if ( in_array( $item_name, $this->exits) ) {
-            $this->items = array_diff($this->items , array($item_name));
+        foreach ($this->items as $key => $item){
+            if ($item->getTitle() == $item_name)
+                unset($this->items[$key]);
         }
     }
     
@@ -89,7 +86,10 @@ class Room {
     
     public function removeExit ($direction) {
         if ( in_array( $direction, $this->exits) ) {
-            $this->exits = array_diff($this->exits , array($direction));
+            foreach ($this->exits as $key => $exit){
+                if ($exit == $direction)
+                    unset($this->exits[$key]);
+            }
         }
     }
     
@@ -100,11 +100,19 @@ class Room {
         return false;
     }
     
+    // Data handling
     public function toArray() {
         $room = array();
         $room['title'] = $this->title;
         $room['description'] = $this->description;
-        $room['exits'] = implode(":", $this->exits);
+        
+        if (!empty($this->exits)) {
+            foreach ( $this->exits as $exit) {
+                $room['exits'][] = $exit;
+            }
+        } else {
+            $room['exits'] = array();
+        }
         
         foreach ( $this->items as $item) {
             $room['items'][] = $item->toArray();
@@ -112,6 +120,29 @@ class Room {
         return $room;
     }
     
+    public static function arrayToRoom($array) {
+        $addRoom = new Room();
+
+        $addRoom->setTitle($array['title']);
+        $addRoom->setDescription($array['description']);
+
+        // add Exit
+        if (!empty($array['exits'])) {
+            foreach ( $array['exits'] as $exit) {
+                $addRoom->addExit($exit);
+            }
+        }
+        
+        // add Items
+        if (!empty($array['items'])) {
+            foreach ( $array['items'] as $item) {
+                $addRoom->addItem(Items::arrayToItem( $item ));
+            }
+        }
+        
+        return $addRoom;
+        
+    }
     
     
 }

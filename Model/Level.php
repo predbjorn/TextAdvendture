@@ -1,11 +1,4 @@
 <?php
-
-/*
- * 
- * 
- * 
- * 
- */
 class Level {
     
     private static $rooms; // Liste som inneholder mange Rooms
@@ -21,22 +14,25 @@ class Level {
     }
     
     public static function initialize(  ) {
-//        if (!isset($_SESSION['level'])) {
+        if (!isset($_SESSION['level'])) {
             self::BuildLevel();
-//            return;
-//        }
-//        self::buildFromSession($_SESSION['level']);
+            return;
+        }
+        self::buildFromSession($_SESSION['level']);
     }
     
     public static function saveLevelsToSession() {
-        
-        
-        
-        return ;
+        $out = array();
+        foreach (self::$rooms as $pos => $room ) {
+            $out[$pos] = $room->toArray();
+        }
+        return $out;
     }
     
-    private static function buildFromSession () {
-        
+    private static function buildFromSession ($session) {
+        foreach ( $session as $pos => $room ) {
+            self::$rooms[$pos] = Room::arrayToRoom( $room );
+        }
     }
 
 
@@ -53,16 +49,23 @@ class Level {
         
         $item = new Items();
         $item->setTitle("Blue ball");
-        $item->setPicukText("You just picked up the blue ball");
+        $item->setPickupText("You just picked up the blue ball");
         
-        $room->addItemToList($item);
+        $room->addItem($item);
+        
+        $item = new Items();
+        $item->setTitle("mountain");
+        $item->setWeight(8);
+        $item->setPickupText("You just picked up the blue ball");
+        
+        $room->addItem($item);
         
         self::$rooms['0,0'] = $room;
         
         
         
         //////////////////////////////////
-        //RED ROOM
+        //Blue ROOM
         
         $room = new Room();
         
@@ -81,15 +84,15 @@ class Level {
         
         $room->setTitle("Green Room");
         $room->setDescription("You have entered the green room!");
-        $room->addExit(Direction::EAST);
+        $room->addExit(Direction::NORTH);
         
         $item = new Items();
         $item->setTitle("yellow ball");
-        $item->setPicukText("You just picked up the yellow ball");
+        $item->setPickupText("You just picked up the yellow ball");
         
-        $room->addItemToList($item);
+        $room->addItem($item);
         
-        self::$rooms['0,0'] = $room;
+        self::$rooms['0,1'] = $room;
         
         
         //////////////////////////////////
@@ -99,14 +102,14 @@ class Level {
         
         $room->setTitle("yellow Room");
         $room->setDescription("You have entered the yellow room!");
-        $room->addExit(Direction::EAST);
+        $room->addExit(Direction::NORTH);
         
         $item = new Items();
         $item->setTitle("red ball");
-        $item->setPicukText("You just picked up the red ball");
+        $item->setPickupText("You just picked up the red ball");
         
-        $room->addItemToList($item);
+        $room->addItem($item);
         
-        self::$rooms['0,0'] = $room;
+        self::$rooms['1,1'] = $room;
     }
 }

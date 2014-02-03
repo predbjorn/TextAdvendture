@@ -86,11 +86,12 @@ class html {
     
     
     public static function endGameScreen($endgame_text) {
-        $out = ' <a href="" onclick="location.reload(true);" ></a>';
+        $out = ' <a href="#" onclick="location.reload(true);" >';
         $out .= ' <div id="room"><div id="room_description">';
         $out .= '<h1>'.$endgame_text.'</h1>';
         $out .= '<p> Click to start new game </p>';        
         $out .= '</div></div>';
+        $out .= '</a>';
         
         return $out;
     }

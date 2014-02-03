@@ -59,11 +59,13 @@ class GameManager {
     
     private static function applyRules () {
         
-        if (    Level::getRoom(0,0)->getItem("red ball") != null &&
+        /*
+        
+        if (    Level::getRoom(0,0)->getItem("red ball") != null &&   // 
                 Level::getRoom(1,0)->getItem("blue ball") != null &&
                 Level::getRoom(0,1)->getItem("green ball") != null &&
                 Level::getRoom(1,1)->getItem("yellow ball") != null) {
-            self::endGame("WHIIIIIIIIII");
+            self::endGame("VICTORY");
         }
         
         if (Player::getInventoryItem("key") != null) {
@@ -76,6 +78,8 @@ class GameManager {
         if (Player::getMoves() > 10) {
             self::endGame("You are old and slow!");
         }
+         
+         */
     }
     
     public static function endGame ($text = "Game over") {
@@ -102,11 +106,11 @@ class GameManager {
                 $room->getTitle(),
                 TextBuffer::getAction()
             );
-        $html->showInfo(
-                Player::getInventoryList(), 
-                Player::getWeightCapacity(),
-                Player::getInvetoryWeight()
-            );
+//        $html->showInfo(
+//                Player::getInventoryList(), 
+//                Player::getWeightCapacity(),
+//                Player::getInvetoryWeight()
+//            );
         $html->showMove($room->getExitList());
         $html->showItems($room->getItemList());
         $html->showDrop(Player::getInventoryList());

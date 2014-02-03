@@ -4,12 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/TextAdvendture/Model/GameManager.php</file>
-            <file>file:/C:/xampp/htdocs/TextAdvendture/style.css</file>
-            <file>file:/C:/xampp/htdocs/TextAdvendture/Model/Room.php</file>
             <file>file:/C:/xampp/htdocs/TextAdvendture/Model/Level.php</file>
-            <file>file:/C:/xampp/htdocs/TextAdvendture/Model/Player.php</file>
-            <file>file:/C:/xampp/htdocs/TextAdvendture/Model/TextBuffer.php</file>
-            <file>file:/C:/xampp/htdocs/TextAdvendture/index2.php</file>
+            <file>file:/C:/xampp/htdocs/TextAdvendture/Model/Room.php</file>
+            <file>file:/C:/xampp/htdocs/TextAdvendture/View/html.php</file>
+            <file>file:/C:/xampp/htdocs/TextAdvendture/style.css</file>
             <file>file:/C:/xampp/htdocs/TextAdvendture/index.php</file>
         </group>
     </open-files>
